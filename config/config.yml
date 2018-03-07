@@ -1,0 +1,3 @@
+app_secret:
+  development: teste99
+  production: senhaproducao

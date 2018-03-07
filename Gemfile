@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 # Sinatra
 gem 'sinatra'
 gem 'puma'
-gem 'rack-conneg'
 gem 'rake'
 
 
@@ -15,3 +14,5 @@ gem 'tux'
 # Roar/Representable
 gem 'roar'
 gem 'multi_json'
+
+gem 'sinatra-contrib'
