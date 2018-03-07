@@ -11,7 +11,7 @@ gem 'rake'
 gem 'mongo', '~> 2.1'
 gem 'mongoid'
 gem 'bson_ext'
-
+gem 'tux'
 # Roar/Representable
 gem 'roar'
 gem 'multi_json'

@@ -14,17 +14,6 @@ configure do
   set :server, :puma # default to puma for performance
 end
 
-use(Rack::Conneg) { |conneg|
-  conneg.set :accept_all_extensions, false
-  conneg.set :fallback, :json
-  conneg.provide([:json])
-}
-
-before do
-  if negotiated?
-    content_type negotiated_type
-  end
-end
 
 class Product
   include Mongoid::Document
@@ -45,7 +34,12 @@ module ProductRepresenter
 end
 class App < Sinatra::Base
 
-  get '/products/?' do
+  get '/' do
+    "Hello world!"
+
+  end
+
+  get '/products2' do
     products = Product.all.order_by(:created_at => 'desc')
     ProductRepresenter.for_collection.prepare(products).to_json
   end
@@ -71,7 +65,7 @@ class App < Sinatra::Base
     end
   end
 
-  post '/products' do
+  get '/products' do
     name = 'Caio'
         #params[:name]
 
