@@ -4,6 +4,9 @@ require 'mongoid'
 require 'roar/json/hal'
 require 'json'
 
+Dir["./app/models/*.rb"].each {|file| require file }
+Dir["./app/services/**/*.rb"].each {|file| require file }
+
 configure do
   Mongoid.load!("config/mongoid.yml", settings.environment)
   set :server, :puma # default to puma for performance
