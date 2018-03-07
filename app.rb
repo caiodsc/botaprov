@@ -1,37 +1,14 @@
 # Encoding: utf-8
-require 'rubygems'
-require 'bundler'
-
-Bundler.require
-
 require 'sinatra'
 require 'mongoid'
 require 'roar/json/hal'
-require 'rack/conneg'
+require 'json'
 
 configure do
   Mongoid.load!("config/mongoid.yml", settings.environment)
   set :server, :puma # default to puma for performance
 end
 
-
-class Product
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  
-  field :name, type: String
-end
-
-module ProductRepresenter
-  include Roar::JSON::HAL
-  
-  property :name
-  property :created_at, :writeable=>false
-
-  link :self do
-    "/products/#{id}"
-  end
-end
 class App < Sinatra::Base
 
   get '/' do
