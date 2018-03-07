@@ -16,3 +16,4 @@ gem 'roar'
 gem 'multi_json'
 
 gem 'sinatra-contrib'
+gem 'rest-client'

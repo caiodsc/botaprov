@@ -5,8 +5,8 @@ require 'roar/json/hal'
 require 'json'
 require 'sinatra/config_file'
 
-
-
+Dir["./app/models/*.rb"].each {|file| require file }
+Dir["./app/services/**/*.rb"].each {|file| require file }
 
 configure do
   Mongoid.load!("config/mongoid.yml", settings.environment)
@@ -16,9 +16,6 @@ end
 class App < Sinatra::Base
   register Sinatra::ConfigFile
   config_file './config/config.yml'
-
-  Dir["./app/models/*.rb"].each {|file| require file }
-  Dir["./app/services/**/*.rb"].each {|file| require file }
 
   get '/' do
     settings.app_secret
